@@ -1,0 +1,32 @@
+Course Details:
+===============
+Course			: Hibernate, Spring, Spring Boot and RESTful services
+
+Trainer Name	: L Chanti
+		M Tech in CSE
+		8 Years of experience in training and working professional
+		Technical Lead in Product Based Company
+
+Start Date	:	Sept 13 th
+Timings		:	7:30am to 8:30am
+Duration	:	60 sessions (2 -3 months)
+Cost		:	
+
+
+Prerequisites for course:
+========================
+1.	Core Java with Java 8 features
+2.	SQL with any database	(Create,Insert,Update,Delete,Select)
+3.	UI (html, css, js)
+4.	Advanced Java (jdbc, servlets, jsp)
+
+
+
+Highlights: 
+============
+			Daily class notes & recording is available 	
+			More than 10 Real time tools
+			One Real time project
+			Live Coding with real time use cases
+			Industry terminologies like sdlc,agile,scrum,sprint,onshore,offshore,mom,..
+			Project manager & Technical round interview questions

@@ -1,0 +1,13 @@
+MVC Architecture:
+=================
+Model			: Jdbc related code 	(*.java)
+View			: Jsp related code 		(*.jsp)
+Controller		: Servlets related code (*.java)
+
+
+create table customers(
+			name		varchar(30)		not null,
+			mailid		varchar(30)		primary key,
+			password	varchar(30)		not null,
+			repassword	varchar(30)		not null
+			);

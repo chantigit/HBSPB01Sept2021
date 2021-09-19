@@ -1,0 +1,20 @@
+MVC Architecture:
+=================
+Model			: Jdbc related code 	(*.java)
+View			: Jsp related code 		(*.jsp)
+Controller		: Servlets related code (*.java)
+
+
+create table customers(
+			name		varchar(30)		not null,
+			mailid		varchar(30)		primary key,
+			password	varchar(30)		not null,
+			repassword	varchar(30)		not null
+			);
+==============================================================================
+API  ->  Provides Set of Classes & Interfaces in the form of packages to perform specific operations
+
+Hibernate Framework:
+====================
+	1.Hibernate is a ORM tool
+	2.Used to prepare persistance logic & Used in Model layer inside MVC Architecture
