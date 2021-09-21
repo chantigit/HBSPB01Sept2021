@@ -1,0 +1,57 @@
+Jdbc:
+=====
+	Jdbc is an API
+		1.java.sql
+		2.javax.sql
+		
+	Used to perform 2 operations
+		1.Establishing the connection between java app & Database
+		2.Perform CRUD operations
+		
+Common Steps to write any JDBC Code:
+
+I.Prepare a java class in File  (JdbcDemo1.java)
+II.Import java.sql package
+III.Prepare main() method & write following 6 steps
+
+	Step1:Load the driver class 
+	Step2:Prepare Connection object
+	Step3:Prepare Statement object
+	Step4:Prepare SQL query & send to Database
+	Step5:Capture the result from Database & Print on console
+	Step6:Close Connection & Statement objects
+
+	
+Drawbacks with JDBC:
+--------------------
+1.all are checked exceptions
+2.boiler plate code 
+3.jdbc uses sql, i.e database depedent
+4.jdbc allow only textual info to persist into db
+
+---------------------------------------------------------------------
+Hibernate Framework:
+=====================
+	Hibernate is a ORM tool 
+	Used to perform 2 operations
+		1.Establishing the connection between java app & Database
+		2.Perform CRUD operations
+		
+Adv of Hibernate over Jdbc:
+==========================
+1.all are unchecked exceptions
+2.no boiler plate code 
+3.Hibernate uses HQL, i.e database indepedent
+4.Hibernate allow you to persist object into db
+
+		
+Common Steps to write any Hibernate Code:
+
+
+File1  	: Persistance Java Class								(Student.java)
+File2  	: Mapping Xml File										(Student.hbm.xml)
+File3  	: Configuration Xml File								(Student.cfg.xml)
+File4	: Java Class with main() method to Test the application	(StudentTest.java)
+
+
+File1  	: Persistance Java Class								(Student.java)
