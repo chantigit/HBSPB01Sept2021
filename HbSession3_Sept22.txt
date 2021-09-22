@@ -1,0 +1,180 @@
+Spring Boot Project basic layers:
+---------------------------------
+Entity Layer
+Repo Layer
+Service Layer
+Controller Layer
+==================================================================================
+
+Common Steps to write any Hibernate Code:
+
+File1  	: Persistance Java Class								(Student.java)
+File2  	: Mapping Xml File										(Student.hbm.xml)
+File3  	: Configuration Xml File								(Student.cfg.xml)
+File4	: Java Class with main() method to Test the application	(StudentTest.java)
+------------------------------------------------------------------------------------
+
+File1  	: Persistance Java Class								(Student.java)
+
+
+Persistance Class / Entity Class / Domain Class :
+================================================
+Rules to prepare Persistance Class
+
+	1.Public Class
+	2.Private Fields
+	3.Among the fileds ONE should be unique  (Based on this HB create 1 PK for our table)
+	4.Public Setters & Getters (NPC,PC,toStr,HC+EQ)
+	
+How many Persistance Classes we have to prepare => Depends on your use case
+------------------------------------------------------------------------------------
+
+File2  	: Mapping Xml File										(Student.hbm.xml)
+
+Hibernate Mapping File:
+=======================
+	Used to declare state of an object
+	In mapping file we have to delcare following info in the form of XML file
+	
+	1.Declare Table Name in DB
+	2.Declare Primary Key 			(Use <id>)
+	3.Declare Non-Primary Key		(Use <property>)
+	
+	File extension should be .hbm.xml
+	
+syntax:
+
+<?xml version="1.0"?>
+<DTD>
+<hibernate-mapping>
+	<class	name="PersistatnceClassName"	table="TableNameinDB">
+		<id					name="ClassFieldName"		column="ColumnName"	/>
+		<property			name="ClassFieldName"		column="ColumnName"	/>
+		<property			name="ClassFieldName"		column="ColumnName"	/>
+		<property			name="ClassFieldName"		column="ColumnName"	/>
+	</class>
+</hibernate-mapping>
+
+How many Mapping Files we have to prepare => Depends on your Persistance Classes
+------------------------------------------------------------------------------------
+
+File3  	: Configuration Xml File								(Student.cfg.xml)
+=================================
+
+This file consist following 3 types of data
+
+	1.Database related properties
+		1.Database driverclass name
+		2.Database url
+		3.Database name
+		4.Database password
+		
+	2.Hibernate related properties
+		1.Declare Dialect Class	:	DBNameDialect
+		2.Declare DDL command	:	create/update
+		3.show_sql				:	true/false
+		4.sql_format			:	true/false
+	3.Mapping file locations
+		Declare location & name of all mapping files
+	
+	File extension should be .cfg.xml
+	
+
+Note:
+
+1.Dialect in Hibernate – Dialect is a class and a bridge between Java JDBC types and SQL types, 
+which contains mapping between java language data type and database datatype. 
+Dialect allows Hibernate to generate SQL optimized for a particular relational database. 
+Hibernate generates queries for the specific database based on the Dialect class.
+
+2.DDL = "create"  =>  Every time new table created if any table is exist in DB with same name it will drop it first
+  DDL = "update"  =>  It will create a table first time & from second time onwards table gets updated
+  
+syntax:
+
+<?xml version="1.0"?>
+<DTD>
+<hibernate-configuration>
+	<session-factory>
+		<!-- DB related info -->
+		<property	name="connection.driver_class">		DB DRIVER CLASS NAME		</property>
+		<property	name="connection.url">				DB URL				 		</property>
+		<property	name="connection.user">				DB  NAME					</property>
+		<property	name="connection.password">			DB PSWD						</property>
+		<!-- HB related info -->
+		<property	name="hibernate.dialect">		DIALECT CLASS NAME				</property>
+		<property	name="hbm2ddl.auto">			create/update					</property>
+		<property	name="show_sql">			 	true/false						</property>
+		<property	name="sql_format">			 	true/false						</property>
+		<!-- Mapping files -->
+		<mapping	resource="MappingFile1Name.hbm.xml"/>
+		<mapping	resource="MappingFile2Name.hbm.xml"/>
+		....
+	</session-factory>
+</hibernate-configuration>
+
+How many Configuration Files we have to prepare => Depends on Databases 
+
+===================================================================================
+File4	: Java Class with main() method to Test the application	(StudentTest.java)
+
+Action of items in main() :
+===========================
+	1.Load the Configuration file into Hibernate Container
+	
+		Configuration  cfg=new Configuration();
+		cfg.configure("Configurationfilename.cfg.xml");
+		
+	2.Capture the high level object 
+	
+		SessionFactory   factory=cfg.buildSessionFactory();
+		
+	3.Create a logical session between our application & database
+	
+			Session session=factory.openSession();
+			
+	4.Create Transaction object 
+			Transaction tx=	session.beginTransaction();
+	
+	5.Create Persistance Class object
+		PersistanceClass  objectname=new Persistance();
+		
+	6.Perform CRUD operations using Persistance Class Object
+		
+	Session Interface Method			CRUD Operation
+	
+	session.save(objectname)			1.Creating a object 		: Inserting object into DB		
+	session.load(objectname)			2.Reading object from DB 	: Selecting object 
+	session.update(objectname)			3.Uptaing object in DB
+	session.delete(objectname)			4.Deleting object in DB 
+
+	7.Capture the result from DB & Print that on console
+	
+	8.Commit the Transaction , Close session object & factory object 
+	
+Requirement1:
+============
+Prepare Hibernate application to create Employee table (empid,empname,empsalary) & insert 1 row.
+
+Note: Prepare the application without build tools
+
+
+Requirement2:
+============
+Prepare Hibernate application to create Account table (accountNumber,name,initialAmount,city) & insert 1 row.
+
+Note: Prepare the application without build tools
+
+
+
+
+
+
+
+
+
+
+
+
+
+
