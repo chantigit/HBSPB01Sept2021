@@ -1,0 +1,60 @@
+Common Steps to write any Hibernate Code:
+
+File1  	: Persistance Java Class								(Student.java)
+File2  	: Mapping Xml File										(Student.hbm.xml)
+File3  	: Configuration Xml File								(Student.cfg.xml)
+File4	: Java Class with main() method to Test the application	(StudentTest.java)
+------------------------------------------------------------------------------------
+
+Requirement1:
+============
+Prepare Hibernate application to create Employee table (empid,empname,empsalary) & insert 1 row.
+
+Note: Prepare the application without build tools
+
+Requirement2:
+============
+Prepare Hibernate application to create Employee table (empid,empname,empsalary) & insert 1 row.
+
+Note: Prepare the application with maven build tool
+
+Requirement3:
+============
+Prepare Hibernate application to create Employee table (empid,empname,empsalary) & insert 1 row.
+
+Note: Prepare the application with maven build tool & Use @Entity,@Table,@Id and @Column annotations
+
+
+Requirement4:
+============
+Prepare Hibernate application to read one object from DB table.
+
+
+task1:With maven tool
+=====
+
+Prepare Hibernate application to create Student table (rollNumber,name,marks) & insert 1 row.
+
+task2:With annotations
+=====
+
+Prepare Hibernate application to create Student table (rollNumber,name,marks) & insert 1 row.
+
+task3:With annotations
+=====
+
+Prepare Hibernate application to read 1 objects
+
+
+
+
+
+
+
+
+
+
+
+
+
+
