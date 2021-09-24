@@ -1,0 +1,97 @@
+
+Jdbc:
+=====
+	Class.forName(-)
+	Connection con=DM.getConnection(-,-,-)
+	Statement st=con.createStatement()
+	//Prepare SQL queries & Execute SQL queries
+	
+	int r		=st.executeUpdate("Create/Insert/Update/Delete")
+	
+	ResultSet r	=st.executeQuery("select")
+	
+HB:
+===
+	Configuration
+	SessionFactory
+	Session   session=...
+	Transaction tx=
+	
+		session.save(ob)
+		session.load(ob)
+		
+		session.update(ob)
+		session.delete(ob)
+	
+======================================================
+
+Advanced HB operations:
+=======================
+1.HQL
+2.NativeSQL
+3.Criteria API
+
+
+
+1.HQL
+		-> Hibernate Query Language
+		-> Using HQL we can perform Select & Non-Select operations
+		-> HQL genarates DB indepedent queries
+		-> To use HQL, we use following syntax:
+		
+			Query  query=session.createQuery("Select & Non-Select");
+			
+		->To execute select queries we used "list()" method which returns List interface object
+		->To execute non-select queries we used "executeUpdate()" method which returns int value
+		
+2.NativeSQL
+		-> NativeSQL is same as Jdbc SQL
+		-> Using NativeSQL we can perform Select & Non-Select operations
+		-> NativeSQL genarates DB depedent queries
+		-> To use NativeSQL, we use following syntax:
+		
+			SQLQuery  query=session.createSQLQuery("Select & Non-Select");
+		
+3.Crietria API
+		-> Using Crietria API we can perform Select operations
+		-> To use Crietria, we use following syntax:
+		
+			Crietria  crietria=	session.createCrietria(PersistanceClassName.class);
+	
+
+
+
+Note:
+=====
+SQL Vs HQL
+
+	SQL	:		select * from employees
+	HQL	:		from Employee
+				or
+				select * from Employee
+	
+	SQL :		select eid,ename 				from employees
+	HQL :		select emp.empId,emp.empName 	from Employee emp
+	
+	
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
