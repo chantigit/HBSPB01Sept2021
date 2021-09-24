@@ -1,0 +1,5 @@
+Jdk :  https://www.oracle.com/java/technologies/downloads/#java11-windows
+Eclipse : https://www.eclipse.org/downloads/download.php?file=/oomph/epp/2021-09/R/eclipse-inst-jre-win64.exe
+Tomcat :  https://drive.google.com/open?id=0B4nvs8Ys73_YX2xRbks4N0RLSFU
+(Download tomcat9)
+MySql Db Server :https://youtu.be/WuBcTJnIuzo       
