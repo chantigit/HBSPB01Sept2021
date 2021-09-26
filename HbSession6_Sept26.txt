@@ -1,0 +1,663 @@
+================================================================================
+Customer.java
+================================================================================
+
+public class Customer 
+{
+	private Integer customerId;
+	private String password;
+	private String customerName;
+	private Integer itemsInCart;
+	private Long phoneNumber;
+	
+	public Customer() {
+	}
+
+	public Customer(Integer customerId, String password, String customerName, Integer itemsInCart, Long phoneNumber) {
+		super();
+		this.customerId = customerId;
+		this.password = password;
+		this.customerName = customerName;
+		this.itemsInCart = itemsInCart;
+		this.phoneNumber = phoneNumber;
+	}
+
+	public Integer getCustomerId() {
+		return customerId;
+	}
+
+	public void setCustomerId(Integer customerId) {
+		this.customerId = customerId;
+	}
+
+	public String getPassword() {
+		return password;
+	}
+
+	public void setPassword(String password) {
+		this.password = password;
+	}
+
+	public String getCustomerName() {
+		return customerName;
+	}
+
+	public void setCustomerName(String customerName) {
+		this.customerName = customerName;
+	}
+
+	public Integer getItemsInCart() {
+		return itemsInCart;
+	}
+
+	public void setItemsInCart(Integer itemsInCart) {
+		this.itemsInCart = itemsInCart;
+	}
+
+	public Long getPhoneNumber() {
+		return phoneNumber;
+	}
+
+	public void setPhoneNumber(Long phoneNumber) {
+		this.phoneNumber = phoneNumber;
+	}
+
+	@Override
+	public String toString() {
+		return "Customer [customerId=" + customerId + ", password=" + password + ", customerName=" + customerName
+				+ ", itemsInCart=" + itemsInCart + ", phoneNumber=" + phoneNumber + "]";
+	}
+
+	
+
+}
+
+================================================================================
+Customer.hbm.xml
+================================================================================
+
+
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+	<class	name="Customer"	table="customers">
+		<id 		name="customerId"			column="id"/>
+		<property 	name="password"				column="password"/>
+		<property 	name="customerName"			column="name"/>
+		<property 	name="itemsInCart"			column="noi"/>
+		<property 	name="phoneNumber"			column="phone"/>
+	</class>
+</hibernate-mapping>
+
+================================================================================
+hibernate.cfg.xml
+================================================================================
+
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE hibernate-configuration PUBLIC
+"-//Hibernate/Hibernate Configuration DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-configuration-3.0.dtd">
+
+
+<hibernate-configuration>
+	<session-factory>
+		<!-- 1. DB properties -->
+		<property name="connection.driver_class"> com.mysql.cj.jdbc.Driver     </property>
+		<property name="connection.url">jdbc:mysql://localhost:3306/sevenamdb1</property>
+		<property name="connection.user">root</property>
+		<property name="connection.password">root</property>
+		<!-- 2. HB properties -->
+		<property name="dialet">org.hibernate.dialect.MySQL8Dialect</property>
+		<property name="hbm2ddl.auto">update</property>
+		<property name="show_sql">true</property>
+		<property name="sql_format">true</property>
+		<!-- 3. Mapping file resource -->
+		<mapping resource="Customer.hbm.xml"/>
+	</session-factory>
+</hibernate-configuration>
+
+================================================================================
+SaveTest.java
+================================================================================
+public class SaveTest {
+
+	public static void main(String[] args) {
+		
+		Configuration cfg=new Configuration();
+		cfg.configure("hibernate.cfg.xml");
+		SessionFactory factory = cfg.buildSessionFactory();
+		Session session = factory.openSession();
+		Transaction tx = session.beginTransaction();
+		
+		Customer customer1=new Customer(101,"pass1","Ajay1",10,9849098491L);
+		Customer customer2=new Customer(102,"pass1","Ajay2",11,9849098492L);
+		Customer customer3=new Customer(103,"pass1","Ajay3",12,9849098493L);
+		Customer customer4=new Customer(104,"pass1","Ajay4",13,9849098494L);
+		Customer customer5=new Customer(105,"pass1","Ajay5",14,9849098495L);
+		Customer customer6=new Customer(106,"pass1","Ajay6",15,9849098496L);
+		Customer customer7=new Customer(107,"pass1","Ajay7",16,9849098497L);
+		Customer customer8=new Customer(108,"pass1","Ajay8",17,9849098498L);
+		Customer customer9=new Customer(109,"pass1","Ajay9",18,9849098499L);
+		Customer customer10=new Customer(110,"pass1","Ajay10",19,9849098490L);
+
+		session.save(customer1);
+		session.save(customer2);
+		session.save(customer3);
+		session.save(customer4);
+		session.save(customer5);
+		session.save(customer6);
+		session.save(customer7);
+		session.save(customer8);
+		session.save(customer9);
+		session.save(customer10);
+		
+		System.out.println("Object saved into DB successfully");
+		tx.commit();
+		session.close();
+		factory.close();
+
+	}
+
+}
+================================================================================
+HqlRead.java
+================================================================================
+
+public class HqlRead {
+
+	public static void main(String[] args) {
+		
+		Configuration cfg=new Configuration();
+		cfg.configure("hibernate.cfg.xml");
+		SessionFactory factory = cfg.buildSessionFactory();
+		Session session = factory.openSession();
+		
+		Query query = session.createQuery("from Customer where customerId=:id");
+		//query.setParameter("id",102);
+		//query.setFirstResult(5);
+		//query.setMaxResults(3);
+		List list1 = query.list();
+		Iterator iterator1 = list1.iterator();
+		while(iterator1.hasNext())
+		{
+			System.out.println(iterator1.next());
+		}
+		
+		session.close();
+		factory.close();
+
+	}
+
+}
+
+================================================================================
+HqlUpdateDelete.java
+================================================================================
+public class HqlUpdateDelete {
+
+	public static void main(String[] args) {
+
+		Configuration cfg=new Configuration();
+		cfg.configure("hibernate.cfg.xml");
+		SessionFactory factory = cfg.buildSessionFactory();
+		Session session = factory.openSession();
+		Transaction tx = session.beginTransaction();
+
+		Query query = session.createQuery("update Customer set phoneNumber = :phone where customerId = :id");
+		query.setParameter("phone",9988998899L);
+		query.setParameter("id", 110);
+		int result = query.executeUpdate();
+
+		System.out.println(result+ " Object updated into DB successfully");
+		
+		//Query query = session.createQuery("delete from Customer where customerId = :id");
+		//query.setParameter("id", 110);
+		//int result = query.executeUpdate();
+
+		//System.out.println(result+ " Object deleted from DB successfully");
+		tx.commit();
+		session.close();
+		factory.close();
+
+	}
+
+}
+================================================================================
+NativeSqlRead.java
+================================================================================
+public class NativeSqlRead {
+
+	public static void main(String[] args) {
+
+		Configuration cfg=new Configuration();
+		cfg.configure("hibernate.cfg.xml");
+		SessionFactory factory = cfg.buildSessionFactory();
+		Session session = factory.openSession();
+
+		//SQLQuery query = session.createSQLQuery("select * from customers").addEntity(Customer.class);
+		/*
+		 	List list1 = query.list();
+			Iterator iterator1 = list1.iterator();
+			while(iterator1.hasNext())
+				System.out.println(iterator1.next());
+		 */
+		/*
+		SQLQuery query=session.createSQLQuery("select name,password from customers").addScalar("name",Hibernate.STRING).addScalar("password",Hibernate.STRING);
+		List list = query.list();
+		List<Object[]> rows=query.list();
+		for(Object[] row:rows)
+		{
+			Customer customer=new Customer();
+			customer.setPassword(row[0].toString());
+			customer.setCustomerName(row[1].toString());
+			System.out.println(customer.getCustomerName()+","+customer.getPassword());
+		}
+		*/
+		session.close();
+		factory.close();
+
+	}
+
+}
+
+================================================================================
+NativeSqlUpdateDelete.java
+================================================================================
+public class NativeSqlUpdateDelete {
+
+	public static void main(String[] args) {
+
+		Configuration cfg=new Configuration();
+		cfg.configure("hibernate.cfg.xml");
+		SessionFactory factory = cfg.buildSessionFactory();
+		Session session = factory.openSession();
+		Transaction tx = session.beginTransaction();
+		SQLQuery query = session.createSQLQuery("update customers set name= :name where id= :id");
+		query.setParameter("name","NewName");
+		query.setParameter("id",109);
+		//SQLQuery query = session.createSQLQuery("delete from customers where id= :id");
+		//query.setParameter("id",109);
+		int res = query.executeUpdate();
+		tx.commit();
+		System.out.println(res);
+		session.close();
+		factory.close();
+
+	}
+
+}
+================================================================================
+CriteriaApiTest.java
+================================================================================
+public class CriteriaApiTest {
+
+	public static void main(String[] args) {
+
+		Configuration cfg=new Configuration();
+		cfg.configure("hibernate.cfg.xml");
+		SessionFactory factory = cfg.buildSessionFactory();
+		Session session = factory.openSession();
+		//select * from Customer
+		/*
+		Criteria criteria = session.createCriteria(Customer.class);
+		criteria.setFirstResult(0);
+		criteria.setMaxResults(3);
+		List list1 = criteria.list();
+		Iterator iterator1 = list1.iterator();
+		while(iterator1.hasNext())
+		{
+			System.out.println(iterator1.next());
+		}
+		 */
+		//select customerName from Customer
+		/*
+		Criteria criteria = session.createCriteria(Customer.class);
+		criteria.setProjection(Projections.property("customerName"));
+		List list1 = criteria.list();
+		Iterator iterator1 = list1.iterator();
+		while(iterator1.hasNext())
+		{
+			System.out.println(iterator1.next());
+		}
+		*/
+		//Aggregate functions using Projections class methods
+		/*
+		Criteria criteria = session.createCriteria(Customer.class);
+		ProjectionList pl=Projections.projectionList();
+		pl.add(Projections.sum("itemsInCart"));
+		pl.add(Projections.avg("itemsInCart"));
+		pl.add(Projections.rowCount());
+		criteria.setProjection(pl);
+		List l=criteria.list();
+		Iterator it=l.iterator();
+		if(it.hasNext())
+		{
+			Object[] row=(Object[])it.next();
+			System.out.println(row[0]+"\t"+row[1]+"\t"+row[2]);
+		}
+		*/
+		//Restrictions class methods, Order class methods 
+		Criteria criteria = session.createCriteria(Customer.class);
+
+		//Criterion cn1 = Restrictions.gt("itemsInCart",new Integer(15));
+		//criteria.add(cn1);
+		
+		//criteria.addOrder(Order.asc("itemsInCart"));
+		//criteria.addOrder(Order.desc("itemsInCart"));
+		List l=criteria.list();
+		Iterator it=l.iterator();
+		while(it.hasNext())
+		{			
+			Customer c=(Customer)it.next();
+			System.out.println("--------------------------------------------");
+			System.out.println(c.getCustomerId()+"|"+c.getCustomerName()+"|"+c.getPhoneNumber()+"|"+c.getItemsInCart());
+		}
+		session.close();
+		factory.close();
+
+	}
+
+}
+
+================================================================================
+AccountHolder1.java
+================================================================================
+public class AccountHolder1
+{
+	private Integer accountNumber;
+	private String accountHolderName;
+	private Double amountInAccount;
+	private String city;
+	private Long phoneNumber;
+	//Version Variable 
+	private int v;
+
+	public AccountHolder1() {
+	}
+	public AccountHolder1(Integer accountNumber, String accountHolderName, Double amountInAccount, String city,
+			Long phoneNumber) {
+		this.accountNumber = accountNumber;
+		this.accountHolderName = accountHolderName;
+		this.amountInAccount = amountInAccount;
+		this.city = city;
+		this.phoneNumber = phoneNumber;
+	}
+	public Integer getAccountNumber() {
+		return accountNumber;
+	}
+	public void setAccountNumber(Integer accountNumber) {
+		this.accountNumber = accountNumber;
+	}
+	public String getAccountHolderName() {
+		return accountHolderName;
+	}
+	public void setAccountHolderName(String accountHolderName) {
+		this.accountHolderName = accountHolderName;
+	}
+	public Double getAmountInAccount() {
+		return amountInAccount;
+	}
+	public void setAmountInAccount(Double amountInAccount) {
+		this.amountInAccount = amountInAccount;
+	}
+	public String getCity() {
+		return city;
+	}
+	public void setCity(String city) {
+		this.city = city;
+	}
+	public Long getPhoneNumber() {
+		return phoneNumber;
+	}
+	public void setPhoneNumber(Long phoneNumber) {
+		this.phoneNumber = phoneNumber;
+	}
+	public void setV(int v)	{
+		this.v = v;
+	}
+	public int getV()	{
+		return v;
+	}
+}
+================================================================================
+AccountHolder2.java
+================================================================================
+public class AccountHolder2
+{
+	private Integer accountNumber;
+	private String accountHolderName;
+	private Double amountInAccount;
+	private String city;
+	private Long phoneNumber;
+	//Version Variable 
+	private Timestamp ts;
+
+	public AccountHolder2() {
+	}
+	public AccountHolder2(Integer accountNumber, String accountHolderName, Double amountInAccount, String city,
+			Long phoneNumber) {
+		this.accountNumber = accountNumber;
+		this.accountHolderName = accountHolderName;
+		this.amountInAccount = amountInAccount;
+		this.city = city;
+		this.phoneNumber = phoneNumber;
+	}
+	public Integer getAccountNumber() {
+		return accountNumber;
+	}
+	public void setAccountNumber(Integer accountNumber) {
+		this.accountNumber = accountNumber;
+	}
+	public String getAccountHolderName() {
+		return accountHolderName;
+	}
+	public void setAccountHolderName(String accountHolderName) {
+		this.accountHolderName = accountHolderName;
+	}
+	public Double getAmountInAccount() {
+		return amountInAccount;
+	}
+	public void setAmountInAccount(Double amountInAccount) {
+		this.amountInAccount = amountInAccount;
+	}
+	public String getCity() {
+		return city;
+	}
+	public void setCity(String city) {
+		this.city = city;
+	}
+	public Long getPhoneNumber() {
+		return phoneNumber;
+	}
+	public void setPhoneNumber(Long phoneNumber) {
+		this.phoneNumber = phoneNumber;
+	}
+	public Timestamp getTs() {
+		return ts;
+	}
+	public void setTs(Timestamp ts) {
+		this.ts = ts;
+	}
+
+}
+================================================================================
+account1.hbm.xml
+================================================================================
+
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+	"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+	"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+	<class name="AccountHolder1" table="AccountHolder1">
+		<id name="accountNumber">
+			<generator class="increment" />
+		</id>
+
+		<version name="v" column="ver" />
+		
+		<property name="accountHolderName" />
+		<property name="amountInAccount" />
+		<property name="city" />
+		<property name="phoneNumber" />
+	</class>
+</hibernate-mapping>
+
+================================================================================
+account2.hbm.xml
+================================================================================
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+	"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+	"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+	<class name="AccountHolder2" table="AccountHolder2">
+		<id name="accountNumber">
+			<generator class="increment" />
+		</id>
+
+		<timestamp name="ts" column="ts"/>
+		
+		<property name="accountHolderName" />
+		<property name="amountInAccount" />
+		<property name="city" />
+		<property name="phoneNumber" />
+	</class>
+</hibernate-mapping>
+
+================================================================================
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE hibernate-configuration PUBLIC
+"-//Hibernate/Hibernate Configuration DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-configuration-3.0.dtd">
+
+
+<hibernate-configuration>
+	<session-factory>
+		<!-- 1. DB properties -->
+		<property name="connection.driver_class"> com.mysql.cj.jdbc.Driver     </property>
+		<property name="connection.url">jdbc:mysql://localhost:3306/sevenamdb1</property>
+		<property name="connection.user">root</property>
+		<property name="connection.password">root</property>
+		<!-- 2. HB properties -->
+		<property name="dialet">org.hibernate.dialect.MySQL8Dialect</property>
+		<property name="hbm2ddl.auto">update</property>
+		<property name="show_sql">true</property>
+		<property name="sql_format">true</property>
+		<!-- 3. Mapping file resource -->
+		<mapping resource="account1.hbm.xml"/>
+		<mapping resource="account2.hbm.xml"/>
+	</session-factory>
+</hibernate-configuration>
+================================================================================
+SaveAccountHolder1.java
+================================================================================
+class SaveAccountHolder1 
+{
+	public static void main(String[] args) 
+	{
+		Configuration cfg = new Configuration();
+        cfg.configure("hibernate.cfg.xml"); 
+ 
+        SessionFactory factory = cfg.buildSessionFactory();
+        Session session = factory.openSession();
+        Transaction tx = session.beginTransaction();
+        
+        AccountHolder1 account1=new AccountHolder1(); 
+        account1.setAccountHolderName("Chanti");
+        account1.setAmountInAccount(50000D);
+        account1.setCity("Hyd");
+        account1.setPhoneNumber(8179817855L);
+        session.save(account1);
+        System.out.println("Object saved successfully.....!!");
+        tx.commit();
+        session.close();
+        factory.close();
+
+	}
+
+}
+================================================================================
+UpdateAccountHolder1.java
+================================================================================
+public class UpdateAccountHolder1 
+{
+	public static void main(String[] args)
+	{
+		 Configuration cfg = new Configuration();
+		 cfg.configure("hibernate.cfg.xml"); 
+		 
+		 SessionFactory factory = cfg.buildSessionFactory();
+		 Session session = factory.openSession();
+		 Transaction tx = session.beginTransaction(); 
+		 
+		 Object o=session.load(AccountHolder1.class,new Integer(1));
+		 AccountHolder1 s=(AccountHolder1)o;
+		 
+		 s.setCity("Chennai");
+		 
+		 tx.commit();
+		 System.out.println("Object Updated successfully.....!!");
+		 session.close();
+		 factory.close();
+	 }
+}
+
+================================================================================
+SaveAccountHolder2.java
+================================================================================
+class SaveAccountHolder2 
+{
+	public static void main(String[] args) 
+	{
+		Configuration cfg = new Configuration();
+        cfg.configure("hibernate.cfg.xml"); 
+ 
+        SessionFactory factory = cfg.buildSessionFactory();
+        Session session = factory.openSession();
+        Transaction tx = session.beginTransaction();
+        
+        AccountHolder2 account1=new AccountHolder2(); 
+        account1.setAccountHolderName("Chanti");
+        account1.setAmountInAccount(50000D);
+        account1.setCity("Hyd");
+        account1.setPhoneNumber(8179817855L);
+        session.save(account1);
+        System.out.println("Object saved successfully.....!!");
+        tx.commit();
+        session.close();
+        factory.close();
+
+	}
+
+}
+================================================================================
+UpdateAccountHolder2.java
+================================================================================
+public class UpdateAccountHolder2 
+{
+	public static void main(String[] args)
+	{
+		 Configuration cfg = new Configuration();
+		 cfg.configure("hibernate.cfg.xml"); 
+		 
+		 SessionFactory factory = cfg.buildSessionFactory();
+		 Session session = factory.openSession();
+		 Transaction tx = session.beginTransaction(); 
+		 
+		 Object o=session.load(AccountHolder2.class,new Integer(1));
+		 AccountHolder2 s=(AccountHolder2)o;
+		 
+		 s.setCity("Chennai");
+		 
+		 tx.commit();
+		 System.out.println("Object Updated successfully.....!!");
+		 session.close();
+		 factory.close();
+	 }
+}
+
+================================================================================

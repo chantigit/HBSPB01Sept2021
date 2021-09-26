@@ -1,0 +1,52 @@
+	SQL:		select * from customers
+	SQL:		update	customers  set name=?, ............  where   id= ?
+	SQL:		delete from customers where   id= ?
+	
+	HQL:		update Customer set customerName= :x,itemsInCart= :y   where customerId= :z
+	HQL:		delete from Customer  where customerId= :x 
+	
+NativeSql:
+Read:
+	session.createSQLQuery("select * from customers").addEntity(Customer.class);
+	session.createSQLQuery("select name from customers").addEntity(Customer.class).addScalar("name");
+	
+Update:
+	session.createSQLQuery("update	customers  set name= :x, ............  where   id= :id")
+Delete:	
+	session.createSQLQuery("delete from customers where   id= :id")
+	===============================================================================
+Criteria API:		API  = C + I
+=============
+
+	select * from customers
+	select customerId,customerName from customers
+	SELECT sum(noi) FROM sevenamdb1.customers;				=> sum(),avg(),min(),max(),count()
+	SELECT * FROM sevenamdb1.customers where noi>15;		=> <,>,<=,>=,=,<>,!=
+	SELECT * FROM sevenamdb1.customers order by noi desc;
+	
+Restrictions class:		
+		lt(),gt(),le(),ge(),ne(),eq()
+Order class:
+		asc(),desc()
+Projections class
+		
+
+
+
+
+Inheritance	(Is-A)
+
+
+class	C1{}
+
+class	C2  extends   C1{}
+
+Association (Has-A)
+
+class	C1{}
+
+class	C2{
+
+	C1 ob;
+}
+
