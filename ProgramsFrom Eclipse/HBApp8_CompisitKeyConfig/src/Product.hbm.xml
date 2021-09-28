@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+	<class name="Product" table="products">
+
+		<composite-id>
+			<key-property name="productId" 		/>
+			<key-property name="productPrice" 	/>
+		</composite-id>
+
+		<property name="productName"/>
+
+
+	</class>
+</hibernate-mapping>

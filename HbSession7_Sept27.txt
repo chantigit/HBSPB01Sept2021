@@ -1,0 +1,141 @@
+Composite Identifier Configuration:
+==================================
+	
+1.Basically we can configure each field in POJO class into Mapping File
+
+2.It is possible by using Two ways
+
+	1.Single identity filed
+	2.Multi identity filed
+
+1.Single identity filed
+------------------------
+Ex:
+	Product
+	   ->pid
+	   ->pname
+	   ->pcost
+
+Note:<id> for configure primary key, <property> for configure non-primary key
+
+mapping file:
+
+	<class name="Product" table="product001">
+		<id name="pid" column="pid" type="int"/>
+		<property name="pname" column="pname" type="String"/>
+		<property name="pcost" column="pcost" type="float"/>
+	</class>
+
+Note:	select * from products where pid=101;
+
+2.Multi identity filed/Composite Primary OR Identifier Configuration:
+---------------------------------------------------------------------
+	To get data on pid & pname based	OR
+	To get data on pid & cost based
+
+mapping file:
+
+	<composite-id>
+		<key-property name="pid" column="pid" type="int"/>
+		<key-property name="pname" column="pname" type="String"/>
+	</composite-id>
+
+Note:	select * from product where pid=101 and pname='iphone';
+
+----------------------------------------------------------------------
+public class Product implements java.io.Serializable{
+
+	private static final long serialVersionUID = 1L;
+	
+	private int productId;
+	private String proName;
+	private double price;
+
+}
+----------------------------------------------------------------------------------------------
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping> 
+   <class name="Product" table="products0001">  
+        
+        <composite-id>
+	<key-property name="productId" column="pid"  />
+	<key-property name="price"/>		
+		</composite-id>
+		
+		<property name="proName" column="pname" length="10" /> 		
+		
+
+    </class> 
+</hibernate-mapping>
+----------------------------------------------------------------------------------------------
+class Address
+{
+	hno
+	street
+	city
+	pin
+}
+class Employee
+{
+	eid
+	ename
+	eage
+	Address address
+}
+class RegEmp  extends  Employee
+{
+	salary
+	bonus
+}
+class ContractEmp extends  Employee
+{
+	payperhour
+	duration
+}
+
+	eid |  ename  |  eage	
+	
+	
+	hno |  street  |  city  |  pin  |  eid 
+
+	
+
+
+
+Relationships between model class:
+=================================
+1.Inheritance(IS-A) relarionship:
+	1.Table per class
+	2.Table per sub class
+	3.Table per concrete class
+
+2.Association(HAS-A) relarionship:
+	1.One-to-One relarionship
+	2.One-to-Many relarionship
+	3.Many-to-Many relarionship
+	
+	
+{
+	librarycode : 'code1'
+	libraryname : 'lib1',
+	librarycity : 'hyd',
+	books		:
+	[
+		{
+			bid : 1,
+			bname : "Book1"
+		},
+		{
+			bid : 2,
+			bname : "Book2"
+		},
+		{
+			bid : 3,
+			bname : "Book3"
+		},
+	]	
+}

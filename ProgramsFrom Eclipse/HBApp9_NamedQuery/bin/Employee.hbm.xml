@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+	<class	name="Employee"	table="employees">
+		<id 		name="employeeId"			column="empId"/>
+		<property 	name="employeeName"			/>
+		<property 	name="employeeSalary"		/>
+	</class>
+	
+	 <query name="q1">
+		<![CDATA[select e from Employee e where e.employeeSalary>:tvar1]]>
+	</query>
+	<query name="q2">
+		<![CDATA[delete  from Employee e where e.employeeId=:tvar2]]>
+	</query>
+</hibernate-mapping>
