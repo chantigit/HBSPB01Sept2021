@@ -1,0 +1,75 @@
+Tools which are used in real time project:
+==========================================
+
+1.Project documentation tool 	:	Confulence
+2.Project management/ticket tool:	Jira
+3.Project repository tool		:	Svn/Git/Bitbucket/GitLab/...
+4.IDE							:	Eclipse,Intellij,STS
+
+5.Project Build tool 			:	Ant/Maven/Gradle
+
+									
+									
+6.Logging tools					: log4j,slf4j,logback,...
+7.Testing tools 				: junit,mockito,...
+8.Source Code quality checker	: Sonarqube
+9.Source Code coverage 			: jacoco
+10. Testing api 				: postman
+11. Api testing + documentation : Swagger
+12. Ci/Cd tool					: Jenkin
+13. Log monitoring tool    		: Putty,Winscp,Bitwise,...
+14. Debugging in IDEs
+=================================================
+Build tools:
+------------
+Roles of Build tools:
+
+									1.Creating a project structure
+									2.Adding required depedencies in build path
+									3.Creating packages for 
+											1.Source code
+											2.Test code
+									4.Compile all source code + test code 
+									5.Run all test cases
+									6.Creating package(jar/war) for current project 
+
+Maven:
+=====
+Maven is a build automation tool used primarily for Java projects. 
+
+Maven can also be used to build and manage projects written in C#, Ruby, Scala, and other languages. 
+
+The Maven project is hosted by the Apache Software Foundation, where it was formerly part of the Jakarta Project.
+
+Repository				: Maven Repository
+License					: Apache License 2.0
+Initial release			: 13 July 2004; 17 years ago
+Developer(s)			: Apache Software Foundation
+Stable release			: 3.8.2 / 4 August 2021; 51 days ago
+Written in				: Java
+
+
+Instalaltion Process:
+=====================
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

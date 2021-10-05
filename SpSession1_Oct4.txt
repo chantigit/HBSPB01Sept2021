@@ -1,0 +1,74 @@
+Adv Java:	(J2EE)
+=========
+	1.jdbc API
+	2.servlet API
+	3.jsp API
+
+MVC Architecture:
+
+	Model layer is implemented by jdbc API
+	View layer is implemented by jsp API
+	Controller layer is implemented by Servlet API
+_________________________________________________________________________
+Frameworks:
+===========
+		1.Hibernate 	Framework
+		2.Spring 		Framework
+		3.Spring Boot 	Framework
+
+MVC Architecture:
+
+	Hibernate 	Framework  is used to implemented Model layer.
+	Spring & Spring Boot Frameworks are used to implement 3 layers
+
+-----------------------------------------------------------------------
+Spring Framework:
+=================
+Given by Rod Johnson in 2003
+
+Spring 1.x has 7 modules
+Spring 2.x onwards we have 6 well defined modules 
+
+Modules in Spring Framework:
+
+	1.Spring Core	(IOC & DI)
+	2.Spring Dao		
+	3.Spring Orm
+	4.Spring Jee
+	5.Spring Aop
+	6.Spring Web-Mvc
+	
+Features of Spring Framework:
+----------------------------
+1.Light weight (No bolier plate code)
+2.Open source 
+3.Free
+4.Non-invasive
+5.Simple to implement (POJO & POJI)
+6.Loose Coupling
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

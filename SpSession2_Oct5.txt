@@ -1,0 +1,108 @@
+Prerequiesites for Spring Core from Core Java:
+----------------------------------------------
+1.Class types
+	1.Singleton class
+	2.Duelton class
+2.Object types
+	1.Mutable object
+	2.Immutable object
+3.How many ways we can create an object ?
+4.How many ways we can destroy an object ?
+5.Solid properties in java ?
+6.Constructor Vs Setter
+7.Why hashCode() and equals() are mandotary to override in a java class?
+8.List, Set, Map  interfaces from collection?
+9.Design Patterns in Java ?   
+_________________________________________________________________________________________________	
+1.Class types:
+==============
+	1.Singleton class	: A class allow u to create single object		(Customized)
+	2.Duelton class		: A class allow u to create multiple objects		(Default)
+
+Preparation of Singleton class:
+-------------------------------
+Rule1: Create private static final object for current class
+Rule2: Create private constructor
+Rule3: Create public static method which returns step1 object
+
+2.Object types:
+===============
+	1.Mutable object	: An object data can be modified			(Default)
+	2.Immutable object	: An object data cannot be modified			(Customized)
+
+Preparation of Immutable object:
+--------------------------------
+Rule1: Final class
+Rule2: Data members must be private final 
+Rule3: Parametrized constructor
+Rule4: Prepare only getters & not the setters
+======================================================================================
+Required files for every HB application:
+========================================
+1.Persistance class		(.java)
+2.HB mapping file		(.hbm.xml)
+3.HB config file		(.cfg.xml)
+4.Test class			(.java)
+	main()
+
+
+Required files for every Spring application:
+========================================
+1.Bean class			(.java)
+2.Spring config file	(.xml)
+4.Test class			(.java)
+	main()
+	
+Bean Class:
+----------
+	1.public class
+	2.private fields
+	3.public Constructor+toS tring() + S+ G
+	4.public business method
+	
+Spring config file:
+-------------------
+	1.Declare bean class object name / identity
+	2.Declare values to for bean object
+
+syntax:
+	<!xml version='1.0'!>
+	<DTD>
+	<beans>
+		<bean	class="BeanClassName"		id="BeanClassObjectName">
+		
+			<property  name="NameOfField"	value="ValueOfField">			</property>
+			<property  name="NameOfField"	value="ValueOfField">			</property>
+			<property  name="NameOfField"	value="ValueOfField">			</property>
+			
+		</bean>
+	</beans>
+
+
+Test class:
+-----------
+
+	1.Load the Spring Config file into Spring Container
+	2.Get High level object from Spring Container
+	3.Call the business methods
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

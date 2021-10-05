@@ -1,0 +1,47 @@
+Tools which are used in real time project:
+==========================================
+
+Build tools:
+------------
+Roles of Build tools:
+
+									1.Creating a project structure	(Standalone / Web)
+									2.Adding required depedencies into build path
+									3.Creating packages for 
+											1.Source code
+											2.Test code
+									4.Compile all source code + test code 
+									5.Run all test cases
+									6.Creating package(jar/war) for current project 
+									7.It allows to use above jar file into another application
+
+
+GroupId
+ArtifactId
+Version
+Snapshot
+
+Maven Goal  =:  CLEAN				(maven-clean-plugin)
+Maven Goal  =:  COMPILE				(maven-compiler-plugin)		clean + compile
+Maven Goal	=:	PACKAGE				(maven-jar-plugin)
+Maven Goal	=:	TEST				(maven-surefire-plugin)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
