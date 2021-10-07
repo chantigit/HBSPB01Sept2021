@@ -1,0 +1,92 @@
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN 2.0//EN" "http://www.springframework.org/dtd/spring-beans-2.0.dtd">
+
+
+
+
+ref element:
+============
+Used to inject inner bean object to outer bean.
+
+ref element used as tag in 3 ways
+
+	1.<ref	local="beanid">			=>	SP container search for inner bean inside current config file
+	2.<ref	parent="beanid">		=>	SP container search for inner bean outside current config file
+	3.<ref	bean="beanid">			=>	It will act as first local then parent
+
+Bean Validation:
+================
+	->Bean Validation By default it is disable
+	->Bean Validation we can enable by using "dependecy-check" attribute in <bean> level
+
+dependecy-check have 4 values:
+
+	dependecy-check =" default "			:  SP container cannot verify
+	dependecy-check =" simple "				:  SP container verify for primitives & string
+	dependecy-check =" objects "			:  SP container verify for object
+	dependecy-check =" all "				:  SP container verify for primitives , string & object
+	
+
+Q1.Can we inject inner bean object to outer bean without "ref" element ?
+Ans:
+	Using Bean Autowiring
+	
+
+Bean Autowiring:
+================
+Def:
+	we inject inner bean object to outer bean without "ref" element by Bean Autowiring process.
+	
+Bean Autowiring by default disable.
+Bean Autowiring is enabled by using "autowired"  attribute in <bean> level
+
+autowired attribute have 5 values
+
+	1.autowire="default"		=>	Bean Autowiring by default disable
+	
+	2.autowire="byName"			=>	Inner bean id name & inner bean property name should be same
+	
+	3.autowire="byType"			=>  Sp container calls setter inside outer bean     & inject inner bean to outer bean
+	4.autowire="constructor"	=>  Sp container calls constructor inside outer bean & inject inner bean to outer bean
+	
+	
+	5.autowire="autodetect"		=>	Act as byType or constructor
+
+Bean Life Cycle:
+================
+
+1.Servlet Life Cycle States:
+
+	1.Loading
+	2.Instatiation
+	3.Initialization
+	4.processing
+	5.destroy
+	
+	Servlet Life Cycle Methods
+		init()
+		service(-,-)
+		destroy()
+		
+	Q1.How do you implement Servlet Life Cycle States ?
+	Ans: By implementing Servlet interface or By extending GenericServlet or By extending HttpServlet
+
+
+2.Bean Life Cycle States:
+
+	1.Bean Instatiation
+	2.Depedency injected
+	3.afterPropertiesSet()
+	4.destroy()
+	
+	Bean Life Cycle Methods
+		afterPropertiesSet()
+		destroy()
+		
+	Q1.How do you implement Bean Life Cycle States ?
+	Ans: By implementing DisposaleBean , InitializingBean interfaces
+
+
+
+
+
+

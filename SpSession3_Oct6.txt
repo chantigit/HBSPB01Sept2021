@@ -1,0 +1,86 @@
+Required files for every HB application:
+========================================
+1.Persistance class		(.java)
+2.HB mapping file		(.hbm.xml)
+3.HB config file		(.cfg.xml)
+4.Test class			(.java)
+	main()
+
+
+Required files for every Spring application:
+========================================
+1.Bean class			(.java)
+2.Spring config file	(.xml)
+4.Test class			(.java)
+	main()
+	
+Bean Class:
+----------
+	1.public class
+	2.private fields
+	3.public Constructor+toS tring() + S+ G
+	4.public business method
+	
+Spring config file:
+-------------------
+	1.Declare bean class object name / identity
+	2.Declare values to for bean object
+
+syntax:
+	<!xml version='1.0'!>
+	<DTD>
+	<beans>
+		<bean	class="BeanClassName"		id="BeanClassObjectName">
+		
+			<property  name="NameOfField"	value="ValueOfField">			</property>
+			<property  name="NameOfField"	value="ValueOfField">			</property>
+			<property  name="NameOfField"	value="ValueOfField">			</property>
+			
+		</bean>
+	</beans>
+
+
+Test class:
+-----------
+
+	1.Load the Spring Config file into Spring Container
+	2.Get High level object from Spring Container
+	3.Call the business methods
+	
+
+Resource				-	I
+
+ClassPathResource		-	IC1
+FileSystemResource		-	IC2
+
+Resource resource=new ClassPathResource("spconfig.xml");
+Resource resource=new FileSystemResource("spconfig.xml");
+
+Injection Mechanisms:
+=====================
+1.Setter Injection			<property> tag
+2.Constructor Injection		<constructor-arg> tag
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
