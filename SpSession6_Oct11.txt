@@ -1,0 +1,31 @@
+Q.how many ways we can configure bean in spring ?
+=================================================
+Ans:
+	There are 3 different ways to configure a class as Spring Bean.
+
+Method1:
+-------
+	XML Configuration. 
+	The <bean> element tag is used in xml context file to configure a Spring Bean.
+
+Method2:
+--------
+	Java Based Configuration.
+	you can configure a Spring bean using @Configuration &  @Bean annotations. 
+
+Method3:
+---------
+	Annotation Based Configuration.
+	It facilitates @Component { @Service, @Repository and @Controller } annotations 
+	
+
+Very imp xml annotations:
+_________________________
+	<context:annotation-config />
+	
+	<context:component-scan base-package="com.chanti"/>
+
+Note:
+
+component-scan  Scans the classpath for annotated components that will be auto-registered as Spring beans. 
+By default, the Spring-provided @Component, @Repository, @Service, and @Controller stereotypes will be detected.

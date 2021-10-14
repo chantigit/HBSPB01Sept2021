@@ -1,0 +1,156 @@
+
+I.Spring Core / IOC & DI
+
+II.Jdbc Integretation with Spring (DAO)
+
+III.Spring Orm / Hibernate
+
+IV.Spring AOP
+
+V.Spring JEE
+
+VI.Spring Web-Mvc
+------------------------------------------------------------
+
+
+JDBC:
+=====
+Statement1:	Class.forName(DCN);
+Statement2:	Connection con=DriverManager.getConnection(URL,USER,PSWD);
+Statement3:	Statement st=con.createStatement();
+Statement4.1:	Prepare UR query:	String v="C/I/U/D/S";
+Statement4.2:	Execute UR query:	
+			
+		Non-Select	=>	exuecteUpdate(v)
+		Select		=>	executQuery(v)
+
+Statement5:	Capture the result from DB & print result on console
+Statement6:	close st,con objects
+
+
+
+
+
+
+
+
+JDBC  Vs Spring integretion with Jdbc(DAO) Vs Spring integretion with Hibernate(ORM):
+======================================================================================
+									JDBC											Spring integretion with Jdbc(DAO)		
+						----------------------------------							----------------------------------		
+
+1.Connecting Java App to Database	:	DriverManager with 3 properties				DriverManagerDataSource with 4 properties	
+
+2.Perform CRUD operations			:	Statement interface methods					JdbcTemplate interface methods				
+		
+										Non-Select	=>	exuecteUpdate(v)	 				i,u,d=>update(v)				
+										Select		=>	executeQeuery(v)					s=>query(v)					
+																							c=>execute(v)					
+																	
+
+
+
+
+
+
+
+
+
+
+
+
+
+Flow of execution in Spring Dao:
+================================
+
+Step1: Configure DriverManagerDataSource with 4 properties
+	->driverClassName
+	->db url
+	->db name
+	->db pswd
+Step2: Configure JdbcTemplate with 1 property
+	->dataSource
+
+Step3: Configure UserBean with JdbcTemplate property
+	->jdbcTemplate
+
+
+
+
+
+
+
+
+Steps to prepare Spring application which integreting Jdbc:
+==========================================================
+Step1: Create a maven project
+
+Step2: Add following depedency in pom.xml
+	->Spring core
+	->Spring context
+	->Spring jdbc
+	->Mysql connector
+
+Step3: Create Bean class which have business methods
+Table Name: Employee with eid,ename,esalary columns
+	createEmp()	
+	saveEmp()
+	updateEmp()
+	deleteEmp()
+	showAllEmp()
+	showEmp()
+
+Step4: Create config file & configure following 3 classes
+
+	Configure DriverManagerDataSource with 4 properties
+	Configure JdbcTemplate with DriverManagerDataSource property
+	Configure Bean with JdbcTemplate property
+
+Step5: Create main class & get bean object from container then call ur business methods
+
+
++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+Task:
+
+Db Name		: springdao
+TableName	: Student
+ColumnsList	: studentId,studentName,studentAge,studentPercentage	
+-----------------------------------------------------------------------------------
+<!-- https://mvnrepository.com/artifact/org.springframework/spring-core -->
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-core</artifactId>
+			<version>5.3.6</version>
+		</dependency>
+		<!-- https://mvnrepository.com/artifact/org.springframework/spring-context -->
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-context</artifactId>
+			<version>5.3.6</version>
+		</dependency>
+		<!-- https://mvnrepository.com/artifact/org.springframework/spring-jdbc -->
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-jdbc</artifactId>
+			<version>5.3.6</version>
+		</dependency>
+		<!-- https://mvnrepository.com/artifact/mysql/mysql-connector-java -->
+		<dependency>
+			<groupId>mysql</groupId>
+			<artifactId>mysql-connector-java</artifactId>
+			<version>8.0.23</version>
+		</dependency>
+
+
+
+
+
+
+
+
+
+
+
+
+	

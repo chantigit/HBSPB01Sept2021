@@ -1,0 +1,159 @@
+
+Bean Configuration ways:
+========================
+1.Using Xml tags
+2.Using Annotations
+
+
+1.Using Xml tags:
+-----------------
+class MyBean1
+{}
+class MyBean2
+{}
+
+<beans>
+		<bean class="MyBean1" id="id1"/>
+		<bean class="MyBean2" id="id2"/>
+</beans>
+
+2.Using @Configuration & @Bean annotations:
+-------------------------------------------
+class MyBean1
+{}
+class MyBean2
+{}
+
+@Configuration
+class BeanConfigurator
+{
+	@Bean
+	public	MyBean1   createBean1(){
+		return new MyBean1();
+	}
+	@Bean
+	public	MyBean2   createBean2(){
+		return new MyBean2();
+	}
+}
+
+ApplicationContext ctx=new AnnotationConfigApplicationContext(BeanConfigurator.class);
+
+3.Using @Component annotations: With config file (@Component = @Configuration & @Bean)
+-------------------------------
+package com.chanti;
+@Component
+class MyBean1
+{}
+
+package com.chanti;
+@Component
+class MyBean2
+{}
+
+spconfig.xml:
+-------------
+	<beans>
+			<context-annotation:config/>
+			<context:component-scan	base-package="com.chanti" />
+	</beans>
+
+
+class Test{
+	main(){
+		ApplicationContext ctx=new ClassPathApplicationContext("spconfig.xml");
+		}
+	}
+	
+3.Using @Component annotations: Without config file (@Component = @Configuration & @Bean)
+-------------------------------
+package com.chanti;
+@Component
+class MyBean1
+{}
+
+package com.chanti;
+@Component
+class MyBean2
+{}
+
+
+@Configuration
+@ComponentScan(basePackages="com.chanti")
+class Test{
+	main(){
+		ApplicationContext ctx=new AnnotationConfigApplicationContext(Test.class);
+		}
+	}
+
+-------------------------------------------------------------------------------------
+@Configuration
+@ComponentScan(value = "com.chanti")
+public class TestApp 
+{
+	public static void main( String[] args )
+	{
+		ApplicationContext ctx = new AnnotationConfigApplicationContext(TestApp.class);
+	}
+}
+------------------------------------------------------------------------------------
+@Component:
+==========
+Spring Component annotation is used to denote a class as Component. 
+It means that Spring framework will autodetect these classes for dependency injection 
+when annotation-based configuration and classpath scanning is used.
+
+Most of the time our component classes will fall under one of its three specialized annotations, 
+so you may not use @Component annotation a lot.
+
+Spring framework provides three other specific annotations to be used when marking a class as Component.
+
+@Service: 
+	Denotes that the class provides some services. 
+	Our utility classes can be marked as Service classes.
+@Repository: 
+	This annotation indicates that the class deals with CRUD operations, 
+	usually it’s used with DAO implementations that deal with database tables.
+@Controller: 
+	Mostly used with web applications or REST web services to specify that the 
+	class is a front controller and responsible to handle user request and return appropriate response.
+
+@Value:
+=======
+@Value is a Java annotation that is used at the field or method/constructor parameter level and it
+indicates a default value for the affected argument. 
+
+It is commonly used for injecting values into configuration variables.
+
+==========================================================================
+
+Spring IOC Annotations:
+=======================
+@Autowired
+@Qualifier
+
+@Scope
+@Required
+
+@PostConstruct
+@PreDestroy
+
+@Configuration
+@Bean
+
+@ComponentScan
+
+
+@Component
+	@Service
+	@Controller
+	@Repository
+	
+@Value
+
+
+Imp Xml Elements in Spring IOC
+
+	<context:annotation-config/>	
+
+	<context:component-scan	base-package="com.chanti" />

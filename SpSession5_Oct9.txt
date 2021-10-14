@@ -1,0 +1,139 @@
+
+Bean Life cycle 5 states & 2 methods (using xml tags):
+======================================================
+
+Bean Life cycle methods	:	afterPropertySet(),destroy()
+
+	To implement afterPropertySet() method we have to use InitializingBean interface
+	To implement destroy()          method we have to use DisplosableBean interface
+
+Code:
+	class	MyBean	implements	InitializingBean,DisplosableBean
+	{
+		afterPropertySet()
+		{}
+		destroy()
+		{}
+	}
+
+
+Bean Life cycle can be maintained in 3 ways:
+
+	1.Using InitializingBean,DisplosableBean interface methods
+	2.Using init-method,destroy-method xml attributes
+	3.Using annotations
+	
+
+
+
+
+
+
+
+
+
+
+
+Bean Scopes using XML 'scope' element:
+======================================
+	We can tell to container that what type of object need to create.
+	
+	
+Syntax:
+			<bean class=""    id=""       scope="YOURSCOPE">
+Ex1:
+	     	<bean class="com.chanti.AdditionBean" id="ob1" scope="singleton"> 
+Ex2:
+	     	<bean class="com.chanti.AdditionBean" id="ob1" scope="prototype"> 
+Ex3:
+			<bean class="com.chanti.AdditionBean" id="ob1" scope="request"> 
+Ex4:
+			<bean class="com.chanti.AdditionBean" id="ob1" scope="session"> 
+Ex5:
+			<bean class="com.chanti.AdditionBean" id="ob1" scope="global-session"> 
+
+
+_________________________________________________________________________________
+Spring IOC containers:
+======================
+
+I.SPRING CORE CONTAINER		
+	->BeanFactory interface implements CORE CONTAINER
+	->LAZY loading
+	->Does not support I18N
+	->Does not supports annotations
+Code:
+		Resource res=new ClassPathResource("myconfig.xml");
+    	BeanFactory fac=new XmlBeanFactory(res);
+
+II.SPRING ADV CONTAINER
+	->ApplicationContext interface implements ADV CONTAINER
+	->EAGER loading
+	->Support I18N
+	->supports annotations
+
+Code:
+	ApplicationContext ctx=new ClassPathXmlApplicationContext("myconfig.xml");
+
+__________________________________________________________________________________
+
+Bean Autowiring:
+================
+
+		Using XML Code 						Using Annotation
+
+	 autowire="byName" 					
+	 autowire="byType"						@Autowired   +  @Qualifier
+	 autowire="constructor" 
+	 autowire="autodetect" 
+
+
+Note:Follwing xml element is used to enable annotations in Spring IOC
+	<context:annotation-config/>
+
+Bean Validation:
+==================
+	Using XML Code 						Using Annotation
+
+	dependency-check="all"				@Required
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	

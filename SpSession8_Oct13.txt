@@ -1,0 +1,122 @@
+Spring IOC Annotations:
+=======================
+@Autowired
+@Qualifier
+
+@Scope
+@Required
+
+@PostConstruct
+@PreDestroy
+
+@Configuration
+@Bean
+
+@ComponentScan
+
+
+@Component
+	@Service
+	@Controller
+	@Repository
+	
+@Value
+
+
+Imp Xml Elements in Spring IOC
+==============================
+	<context:annotation-config/>	
+
+	<context:component-scan	base-package="com.chanti" />
+	
+Spring:
+=======
+
+@Configuration
+@ComponentScan(basePackages = "com.chanti")
+public class TestApp
+{
+	main(){
+	}
+}
+
+
+SpringBoot:
+===========
+
+@SpringBootApplication		=	@Configuration + @ComponentScan  + @EnableAutoConfiguration
+public class TestApp
+{
+	main(){
+	}
+}
+
+The @SpringBootApplication annotation is a combination of following three Spring annotations 
+and provides the functionality of all three with just one line of code.
+
+
+@Configuration to enable Java-based configuration
+@ComponentScan to enable component scanning.
+@EnableAutoConfiguration to enable Spring Boot's auto-configuration feature.
+===========================================================
+	
+https://en.wikipedia.org/wiki/Dependency_injection
+
+https://www.baeldung.com/spring-dependency-injection
+https://www.baeldung.com/inversion-control-and-dependency-injection-in-spring
+
+============================================================
+
+class C1
+{
+	String a,b,c,d;
+	void start(){}
+}
+class C2
+{
+	C1 ob;
+	void work1(){
+		ob.start();
+		.....logic for work1
+	}
+	void work2(){
+		ob.start();
+		.....logic for work2
+	}
+}
+class C3
+{
+	C2 ob;
+	void job1(){
+		ob.work1();
+		.....logic for job11
+	}
+	void job2(){
+		ob.work2();
+		.....logic for job12
+	}
+}
+
+=========================Want to job1() method
+
+<beans>
+	<bean class="C1" id="id1">
+		<property name="a" value="Value1"/>
+		<property name="b" value="Value2"/>
+		<property name="c" value="Value3"/>
+		<property name="d" value="Value4"/>
+	</bean>
+
+	<bean class="C2" id="id2">
+		<property name="ob" ref="id1"/>
+	</bean>
+	
+	<bean class="C3" id="id3">
+		<property name="ob" ref="id2"/>
+	</bean>
+</beans>
+
+main:
+=====
+	C3 ob=(C3)factory.getBean("id3");
+	ob.job1();

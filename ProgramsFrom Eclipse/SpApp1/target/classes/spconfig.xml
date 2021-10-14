@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:p="http://www.springframework.org/schema/p"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans  
+               http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
+               
+    <bean class="com.chanti.VitsEngCollegeBean" id="vits">
+    	<property name="studentNames">
+    		<list>
+    			<value>Ajay</value>
+    			<value>Arun</value>
+    			<value>Ajay</value>
+    			<value>Tarun</value>
+    		</list>
+    	</property>
+    	<property name="studentRollNumbers">
+    		<set>
+    			<value>501</value>
+    			<value>502</value>
+    			<value>503</value>
+    			<value>504</value>
+    		</set>
+    	</property>
+    	<property name="branchDetails">
+    		<map>
+    			<entry key="CSE" value="60"/>
+    			<entry key="ECE" value="60"/>
+    			<entry key="EEE" value="60"/>
+    			<entry key="MECH" value="60"/>
+    		</map>
+    	</property>
+    	<property name="branchInfos">
+    		<props>
+    			<prop key="CSE">Pradeep</prop>
+    			<prop key="ECE">Arun</prop>
+    			<prop key="EEE">Varun</prop>
+    		</props>
+    	</property>
+    </bean>
+    <!-- Configuring inner bean -->
+	<bean	class="com.chanti.DobBean" id="dob1">
+			<property name="day" value="06"/>
+			<property name="month" value="Oct"/>
+			<property name="year" value="2001"/>
+	</bean>
+	 <!-- Configuring outer bean -->
+	<bean class="com.chanti.StudentBean" id="student1">
+		<property name="rollNumber" value="501"/>
+		<property name="percentage" value="78.56"/>
+		<property name="studentName" value="AjayKumar"/>
+		<property name="dob" ref="dob1"/>
+	</bean>     
+	<bean class="com.chanti.AdditionBean" id="id1">
+		<!-- SETTER INJECTION=  property tag -->
+		<property name="num1" value="100"></property>
+		<property name="num2" value="200"></property>
+	</bean>
+	<!-- 
+			AdditionBean  id1=new AdditionBean();
+			id1.setNum1(100);
+			id1.setNum2(200);
+	 -->
+	<bean class="com.chanti.SubtractionBean" id="id2">
+		<!-- CONSTRUCTOR INJECTION=  constructor-arg tag -->
+		<!-- 
+		<constructor-arg name="num1" value="500"/>
+		<constructor-arg name="num2" value="200"/>
+		 -->
+		 <constructor-arg index="0" value="450"/>
+		 <constructor-arg index="1" value="50"/>
+	</bean>
+	<!-- 
+			SubtractionBean id2=new SubtractionBean(500,200);
+	 -->
+</beans>
