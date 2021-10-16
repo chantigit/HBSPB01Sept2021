@@ -1,0 +1,94 @@
+
+JDBC  Vs Spring integretion with Jdbc(DAO)
+===========================================
+									JDBC											Spring integretion with Jdbc(DAO)		
+						----------------------------------							----------------------------------		
+
+1.Connecting Java App to Database	:	DriverManager with 3 properties				DriverManagerDataSource with 4 properties	
+
+2.Perform CRUD operations			:	Statement interface methods					JdbcTemplate interface methods				
+		
+										Non-Select	=>	exuecteUpdate(v)	 				i,u,d=>update(v)				
+										Select		=>	executeQeuery(v)					s=>query(v)					
+																							c=>execute(v)					
+
+Spring integretion with Jdbc(DAO) Vs Spring integretion with Hibernate:
+=======================================================================
+							Spring integretion with Hibernate						Spring integretion with Jdbc(DAO)		
+						----------------------------------							----------------------------------		
+
+1.Connecting Java App to Database	:	DriverManagerDataSource with 4 properties	DriverManagerDataSource with 4 properties	
+
+2.Perform CRUD operations			:	HibernateTemplate interface methods			JdbcTemplate interface methods				
+		
+										save()												i,u,d=>update(v)				
+										update()											s=>query(v)					
+										delete()											c=>execute(v)	
+										load()
+										
+Hibernate Required Files:
+=========================
+1.Persistance class
+		-> private fields : (1 should be unique)
+		-> NPC,PC,S+G,ToS
+2.HB Mapping file
+		-> table name
+		-> primary key declaration
+		-> non-primary key declaration
+3.HB Config file
+		-> DB related properties : driverClassName,url,username,password
+		-> HB related properties : diaclect,ddl,show_sql,sql_format
+		-> HM Mapping resource
+4.Test class :		Configuration,SessionFactory,Session,Transaction
+
+
+Spring with Hibernate Required Files:
+=====================================
+1.Persistance class
+		-> private fields : (1 should be unique)
+		-> NPC,PC,S+G,ToS
+2.HB Mapping file			(You can ingore this file if we use @Entity,@Table,@Id,@Column annotations)
+		-> table name
+		-> primary key declaration
+		-> non-primary key declaration
+
+3.Spring Bean class (UserBean Class)
+		->Declare HibernateTemplate field with Setter
+		->Prepare your business methods
+		
+4.Spring Config file
+		
+		<beans>
+	<bean id="id1" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+		<property name="driverClassName" 	value="com.mysql.jdbc.Driver" />
+		<property name="url" 				value="jdbc:mysql://localhost:3306/sevenamdb1" />
+		<property name="username" 			value="root" />
+		<property name="password" 			value="root" />
+	</bean>
+	
+	<bean id="id2" class="LocalSessionFactoryBean">
+		<bean id="id2" class="LocalSessionFactoryBean">
+		<!-- Configure DataSource Property  -->
+			<property name="dataSource" id="id1">    </property>
+		<!-- HB related Properties : dialect,show_sql,sql_format,ddl  -->
+			<property> 
+				DI in the form Collection Properties :  <props> & <prop>
+			</property>
+		<!-- Mapping file resource Property  -->
+		<property> 
+			DI in the form Collection List :  <list> & <value>
+		</property>
+	</bean>
+	<bean id="id3" class="org.springframework.jdbc.core.HibernateTemplate">
+		<property name="dataSource" ref="id2"/>
+	</bean>
+
+	<bean id="id4" class="com.chanti.UserBean">
+		<property name="template" ref="id3"/>
+	</bean>
+</beans>
+
+5.Test class :		
+
+	Get id4 bean object
+	Call your business methods
