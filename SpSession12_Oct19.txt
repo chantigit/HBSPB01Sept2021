@@ -1,0 +1,177 @@
+
+I.Spring Core /IOC & DI
+	Bean Configurations
+	Bean Life cycle
+	Bean Scopes
+	Bean Validations
+	Bean Autowiring
+	Annotations	: @Autowired,@Qualifier,@Required,@Scope,@Configuration,@Bean
+				: @Component,@Service,@Controller,@Repository	
+
+II.Spring Dao / Jdbc
+	DriverManagerDataSource	
+	JdbcTemplate		:  execute(),update(),query()
+
+III.Spring Orm / Hibernate
+	DriverManagerDataSource	
+	HibernateTemplate	:  save(),update(),delete(),loadAll()
+
+IV.Spring AOP	(Aspect Oriented Programming)
+
+V.Spring JEE services
+
+VI.Spring Web-Mvc
+------------------------------------------------------------
+
+
+
+
+
+
+class Atm
+{
+	1.logging service(b&a),2.rmi service(b),3.Tx mgmt service,4.Security service(b&a),5.WCS(b),6.GBS(a)
+    	//business method1
+	balanceEnq(cardnumber,pin)
+	{
+		logic for balanceEnq	(select amount from account where cardnumber =? and pin=?)  
+	}
+
+	1.logging service(b&f),2.rmi service(b),3.Tx mgmt service,4.Security service(b&a),5.WCS(b),6.GBS(a)
+	//business method2
+	diposit(cardnumber,pin,dipamt)
+	{
+		logic  for diposit	=>select amount from account where cardnumber =? and pin=?
+					=>update account set amount=amount+? where  cardnumber =? 
+					=>select amount from account where cardnumber =? and pin=?
+	}
+
+	1.logging service(b&f),2.rmi service(b),3.Tx mgmt service(throws),4.Security service(b&a),5.WCS(b),6.GBS(a)
+	//business method3
+	withdraw(cardnumber,pin,withdrawamt)
+	{
+		logic  for withdraw	=>select amount from account where cardnumber =? and pin=?
+					=>update account set amount=amount-? where  cardnumber =? 
+					=>select amount from account where cardnumber =? and pin=?
+	}
+}
+
+
+
+OOP	(Object Oriented PS):	( CO-APIE )
+===
+class	AccountHolder
+{
+	balanaceEnq()	{}	
+	diposit()	{}
+	withdraw()	{}
+	changepin()	{}	
+	transfer()	{}
+	editdetails()	{}
+}
+class	Employee
+{}
+class	Branch
+{}
+class	Loan
+{}
+class	BankingApp
+{
+	ArrayList<AccountHolder>	ob1;
+	ArrayList<Employee>		ob2;
+	ArrayList<Branch>		ob3;
+	ArrayList<Loan>			ob4;
+	...
+}
+
+AOP	(Aspect Oriented P S):	(Aspect,Advice,PointCut,JointCut,target,Interceptor,....)
+====
+Aspect	:	service name		
+Advice	:	implementaion	of 	service 
+
+		Types:	
+			1.Before advice	: Which is triggered before business method
+			2.After advice  : Which is triggered after business method
+			3.Around advice : Which is triggered before & after business method
+			4.Throws advice : Which is triggered when exception is raised inside business method
+			
+Q1. I want to create a thread class?
+
+Ans: By implementing Runnable interface
+
+Code:
+	class	MyThread	implements	Runnable
+	{
+		@Override
+		public	void	run()
+		{
+
+		}
+	}
+
+Q1. I want to create a BeforeAdvice class?
+Ans: By implementing MethodBeforeAdvice interface
+Code:
+	class	MyBeforeAdvice	implements	MethodBeforeAdvice{
+		@Override
+		public	void	before(...){
+		}
+	}
+Q2. I want to create a AfterAdvice class?
+Ans: By implementing AfterReturningAdvice interface
+Code:
+	class	MyAfterAdvice	implements	AfterReturningAdvice{
+		@Override
+		public	void	afterReturning(...){
+		}
+	}
+Q3. I want to create a AroundAdvice class?
+Ans: By implementing MethodInterceptor interface
+Code:
+	class	MyAroundAdvice	implements	MethodInterceptor{
+		@Override
+		public	void	invoke(...){
+		}
+	}
+Q4. I want to create a ThrowsAdvice class?
+Ans: By implementing ThrowsAdvice  interface
+Code:
+	class	MyThrowsAdvice	implements	ThrowsAdvice {
+		@Override
+		public	void	validate(...){
+		}
+	}
+
+Flow of AOP Application:
+========================
+1.Prepare Interface with Your BM
+	interface	A{
+			void	m1();
+	}
+2.Prepare Implemeneted Class of above Interface
+	class	X	implements	A{
+		void m1(){
+				//business logic
+		}
+	}
+3.Prepare your advise class		(After,Before,Around,Throws)
+	class	MyAfterAdvise	implements	AfterReturingAdvise
+	{
+		afterReturning(){
+			//service logic	
+		}
+	}
+4.Configure above class
+		->Configure Implemeneted Class with : 	id1
+		->Configure Advise Class with 		:	id2
+		
+		
+		->Configure ProxyFactoryBean class with 3 properties to perform Point Cut mechanism	with:	id3
+				1.proxyInterface	= Declare Interface Name which have business method declarations
+				2.interceptors		= Declare advice ids  : id2
+				3.target			= Declare Implemeneted Class id : id1
+				
+5.Main class
+		getBean("id3") & call business methods
+	
+		

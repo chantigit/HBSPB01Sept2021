@@ -1,0 +1,91 @@
+What is Servlet ?
+What is use of Servlet ?
+How many ways  we can create a Servlet ?
+What is Servlet Url Mapping ?
+How many ways we can do Servlet Url Mapping ?
+What is use of @WebServlet annotation ?
+============================================================================
+
+MVC as per servlet,jsp,jdbc: 
+============================
+1.How to create a Controller/ Servlet ?
+	class Controller1  extends HttpServlet  
+	{
+		doGet(HSR,HSR)
+		{
+		}
+	}
+	class Controller2  extends HttpServlet  
+	{
+		doGet(HSR,HSR)
+		{
+		}
+	}
+2.How  to create View / Jsp ?
+	WEB-INF/views/view1.jsp
+	WEB-INF/views/view2.jsp
+	WEB-INF/views/view3.jsp
+
+3.How to create Model / Jdbc ?
+	Pojo / Model class
+	DbCon class
+	Dao class 
+-----------------------------------------------------------------------------------------------
+Spring Web - MVC :
+=================
+1.How to create a Controller Layer ?
+
+Approach1: By implementing Controller interface
+	class MyController1  implements Controller
+	{
+		ModelAndView  handleRequest(HSR,HSR){
+			ModelAndView  ob=new ModelAndView(ViewName,"ModelKey",ModelValue);
+			//logic of Controller1
+			return  ob;
+		}
+	}
+Approach2: By extending AbstractCommandController  abstract class
+
+	class MyController1  extends AbstractCommandController
+	{
+		ModelAndView  handle(HSR,HSR){
+			ModelAndView  ob=new ModelAndView(ViewName,"ModelKey",ModelValue);
+			//logic of Controller1
+			return  ob;
+		}
+	}
+Approach3: Using @Controller annotation
+
+	@Controller
+	class MyController1  
+	{
+		ModelAndView  myHandler(HSR,HSR){
+			ModelAndView  ob=new ModelAndView(ViewName,"ModelKey",ModelValue);
+			//logic of Controller1
+			return  ob;
+		}
+	}
+
+2.How  to create View  Layer ?
+	WEB-INF/views/view1.jsp
+	WEB-INF/views/view2.jsp
+	WEB-INF/views/view3.jsp
+
+3.How to create Model Layer ?
+	Spring with Jdbc (DMDS + JT)  or Spring with Hibernate  (DMDS + HT)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

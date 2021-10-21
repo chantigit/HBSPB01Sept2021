@@ -1,0 +1,66 @@
+-----------------------------------------------------------------------------------------------
+Spring Web - MVC :
+=================
+1.How to create a Controller Layer ?
+
+Approach1: By implementing Controller interface
+	class MyController1  implements Controller
+	{
+		ModelAndView  handleRequest(HSR,HSR){
+			ModelAndView  ob=new ModelAndView("ViewName","ModelKey",ModelValue);
+			//logic of Controller1
+			return  ob;
+		}
+	}
+Approach2: By extending AbstractCommandController  abstract class
+	class MyController1  extends AbstractCommandController
+	{
+		ModelAndView  handle(HSR,HSR){
+			ModelAndView  ob=new ModelAndView("ViewName","ModelKey",ModelValue);
+			//logic of Controller1
+			return  ob;
+		}
+	}
+Approach3: Using @Controller annotation
+
+	@Controller
+	class MyController1  
+	{
+		ModelAndView  myHandler(HSR,HSR){
+			ModelAndView  ob=new ModelAndView("ViewName","ModelKey",ModelValue);
+			//logic of Controller1
+			return  ob;
+		}
+	}
+
+2.How  to create View  Layer ?
+	WEB-INF/views/view1.jsp
+	WEB-INF/views/view2.jsp
+	WEB-INF/views/view3.jsp
+
+3.How to create Model Layer ?
+	Spring with Jdbc (DMDS + JT)  or Spring with Hibernate  (DMDS + HT)
+
+========================================================================================
+How to configure Controller classes:
+====================================
+
+		<beans>
+			<bean	class="MyController1"	id="id1"/>
+			<bean	class="MyController2"	id="id2"/>
+			<bean	class="MyController3"	id="id3"/>
+		</beans>
+
+
+
+
+
+
+
+
+
+
+
+
+
+

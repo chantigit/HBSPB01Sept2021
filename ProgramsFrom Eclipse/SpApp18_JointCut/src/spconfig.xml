@@ -1,0 +1,38 @@
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN 2.0//EN" "http://www.springframework.org/dtd/spring-beans-2.0.dtd">
+<beans>
+	<bean id="id1" class="TestBean" />
+	<bean id="id2" class="WelcomeAdvice" />
+	<bean id="id3" class="GoodByeAdvice" />
+	<bean id="id4" class="org.springframework.aop.support.NameMatchMethodPointcut">
+		<property name="mappedName">
+			<value>say*</value>
+		</property>
+	</bean>
+	<bean id="id5" class="org.springframework.aop.support.JdkRegexpMethodPointcut">
+		<property name="pattern">
+			<value>.*get.+Data</value>
+		</property>
+	</bean>
+	<bean id="id6" class="org.springframework.aop.support.DefaultMethodPointcutAdvisor">
+		<property name="pointcut" ref="id4" />
+		<property name="advice" ref="id2" />
+	</bean>
+	<bean id="id7" class="org.springframework.aop.support.DefaultMethodPointcutAdvisor">
+		<property name="pointcut" ref="id5" />
+		<property name="advice" ref="id3" />
+	</bean>
+	<bean id="id8" class="org.springframework.aop.framework.ProxyFactoryBean">
+		<property name="proxyInterfaces">
+			<value>TestInter</value>
+		</property>
+		<property name="interceptorNames">
+			<list>
+				<value>id6</value>
+				<value>id7</value>
+			</list>
+		</property>
+		<property name="target">
+			<ref bean="id1" />
+		</property>
+	</bean>
+</beans>
