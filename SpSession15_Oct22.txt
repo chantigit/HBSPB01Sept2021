@@ -1,0 +1,64 @@
+How to create a controller class:
+=================================
+public class MyController implements Controller
+{
+	public ModelAndView handleRequest(HttpServletRequest req,HttpServletResponse res)throws Exception
+	{
+		return new ModelAndView("success");
+	}
+}
+How to configure Controller classes:
+====================================
+		<beans>
+			<bean	class="MyController"	id="id1"/>
+		</beans>
+
+How to map a Request to a particular Controller classes:
+========================================================
+		
+<bean id="id2" class="org.springframework.web.servlet.handler.SimpleUrlHandlerMapping">
+	<property name="mappings">
+		<props>
+			<prop key="myreq1.form">id1</prop>
+		</props>
+	</property>
+</bean>
+
+
+How do delcare view locations & view extensons:
+=================================================
+	<bean id="viewResolver" class="org.springframework.web.servlet.view.InternalResourceViewResolver">  
+        <property name="prefix" value="/WEB-INF/jsp/"></property>  
+        <property name="suffix" value=".jsp"></property>          
+     </bean>  
+
+
+How to map DispactherServlet in web.xml:
+========================================
+	<servlet>
+    <servlet-name>disp</servlet-name>
+    <servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+    <load-on-startup>1</load-on-startup>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>disp</servlet-name>
+    <url-pattern>*.form</url-pattern>
+  </servlet-mapping>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

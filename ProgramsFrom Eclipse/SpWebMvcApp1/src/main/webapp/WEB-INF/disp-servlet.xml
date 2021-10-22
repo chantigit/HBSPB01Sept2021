@@ -7,11 +7,17 @@
 
 
 <bean id="id1" class="MyController"/>
+<bean id="controller1" class="MyController1"/>
+<bean id="controller2" class="MyController2"/>
+<bean id="controller3" class="MyController3"/>
 
 <bean id="id2" class="org.springframework.web.servlet.handler.SimpleUrlHandlerMapping">
 	<property name="mappings">
 		<props>
 			<prop key="myreq1.form">id1</prop>
+			<prop key="myreq2.form">controller1</prop>
+			<prop key="myreq3.form">controller2</prop>
+			<prop key="myreq4.form">controller3</prop>
 		</props>
 	</property>
 </bean>
