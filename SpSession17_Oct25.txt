@@ -1,0 +1,42 @@
+Servlet Code Vs Controller Code:
++++++++++++++++++++++++++++++++++
+Servlet Code:
+=============
+class	MyServlet extends	HttpServlet{
+	void	doGet(){
+		//Processing request
+	}
+}
+
+Controller Code:
+=================
+@Controller
+public class Controller1 {
+
+	@RequestMapping(value="/url1",method = RequestMethod.GET)
+	@ResponseBody
+	public String handler() {
+		//Processing request
+		return "welcome";
+	}
+}
+----------------------------------------------------------------------------------
+
+RequestMethods:
+===============
+
+1.RequestMethod.GET		: Used to retrive resource from the server
+
+2.RequestMethod.POST	: Used to insert/save/send resource to the server
+
+3.RequestMethod.PUT		: Used to modify resource in the server
+
+4.RequestMethod.DELETE	: Used to delete resource in the server
+
+syntax:
+
+	@RequestMapping(value="/urlName",method = RequestMethod.MEHODNAME)
+	public returntype  handlerName() {
+		//Processing request
+	}
+	

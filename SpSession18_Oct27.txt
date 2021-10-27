@@ -1,0 +1,55 @@
+Prerequisites for CRUD Application:
+-----------------------------------
+Annotations:
+	@Controller
+	@RequestMapping
+	@ModelAttribute
+	@PathVariable
+	@RequestParam
+RequestMethod class with GET,POST,PUT,DELETE constants
+Model interface
+View layer preparation :
+	Jsp + EL + Jstl tags  (core,functional,format,xml,sql)
+
+Model layer preparation :
+	Model class preparation
+	Dao class preparation		: Business methods which performs CRUD operations
+Controller layer preparation:
+	mapping request to handlers
+Spring configuration file 		
+web.xml file 
+Depedencies in pom.xml 
+
+--------------------------------------------------
+CRUD Application in Spring Web Mvc:
+--------------------------------------------------
+Spring configuration file 		
+web.xml file 
+Depedencies in pom.xml 
+
+
+1.Model layer implementation:
+============================
+	1.Employee class
+		Delcare id,name,salary,designtation
+		Delcare setters + getters + NPC +PC + toS
+	2.EmployeeDao class 
+		Delcare JdbcTemplate
+		Declare business methods
+		1.public int save(Emp p)
+		2.public List<Emp> getEmployees()
+		3.public Emp getEmpById(int id)
+		
+2.View layer implementation:
+============================
+view1name:	
+description:
+3.Controller layer implementation:
+==================================
+handler1name:showform
+return type :
+argument list :	
+description:		
+
+		
+

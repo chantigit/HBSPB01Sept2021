@@ -1,0 +1,26 @@
+Working with annotations:
+=========================
+
+@Controller annotation & @RequestMapping annotation:
+----------------------------------------------------
+
+@Controller
+public class MyController1 {
+
+	@RequestMapping("/")   
+	public String home() {
+
+		return "home";    
+	}
+	@RequestMapping("main")   
+	public String homeUrl() {
+
+		return "home";    
+	}
+	@RequestMapping("url1") 		
+	public String handler2() {
+
+		return "view1";
+	}
+
+}
